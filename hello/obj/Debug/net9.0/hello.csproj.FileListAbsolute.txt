@@ -1,5 +1,0 @@
-/home/gbonis/programming/practice/csharp/pourquoi/hello
-/home/gbonis/programming/practice/csharp/pourquoi/hello.deps.json
-/home/gbonis/programming/practice/csharp/pourquoi/hello.runtimeconfig.json
-/home/gbonis/programming/practice/csharp/pourquoi/hello.dll
-/home/gbonis/programming/practice/csharp/pourquoi/hello.pdb
