@@ -1,4 +1,4 @@
-﻿//using System;    // optionnel
+﻿//using System;    // optionnel, parce que c'est System, qui est providé par c# probablement
 
 // Main doit être dans une classe, pas réussi top level statement, compiler complaining
 // les fonctions aussi d'ailleurs (Or içi)
@@ -25,6 +25,9 @@ class Program
 		}
 	}
 }
+
+
+// içi j'essaie de reproduire le pattern matching montré dans le tutoriel de microsoft pur c#
 
 public class Func
 {
