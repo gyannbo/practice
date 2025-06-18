@@ -8,8 +8,10 @@
 // pour appeler une fonction, je dois la mettre dans une classe, j'ai pas réussi à faire 
 // autrement (donc Func.Or()
 
+// <using> directives enable us to ommit the System in System.Console.WriteLine
+// probably because Console.WriteLine is declared in the system namespace
 
-class Program
+class Program 		// pas obligé d'avoir Program içi, peut etre un autre mot
 {
 	static void Main()
 	{
