@@ -24,8 +24,8 @@ while [ true ]		# necessite le true pour que la boucle tourne, pas comme en c ou
 			then
 				cd .. 
 				let " i += 1 "
-				let " success += 1 "
 			else
+				let " success += 1 "
 				echo " ${dirs[$i]} is not clean"
 				cd .. 
 				let " i += 1 "
@@ -35,6 +35,14 @@ exit
 
 
 ## créer un checker pour tous les gits qui sont dans le $HOME
+## utiliser la commande find maxdepth 1 -name '.git'  pour checker chaque directory depuis le home en bouclant
+
+## find ~ -name '.git' | grep practice | sed 's/\/\.git//'  ## on peut utiliser ça sur chaque match de find pour cd dedans et faire un git status
+## ensuite l'idée serait plutot de noter tous les git qui sont a shutdown et d'avoir que mes gits, et de pouvoir lancer le script de mon home
+## pour pouvoir etre sur de tout toucher
+
+## d'abord build un getter de toutes les paths>
 
 
-## faudrait meilleur gestion d'erreur, si il ya un dir avec des gits dedans on a un message d'erreur "fatal not a git etc"
+## TODOa :
+## NOTER DANS LES FICHIERS HELP TOUT CE QUE J'AI UTILIsé içi comme concepts, sed, boucle etc.. et les trucs sur lesquels j'ai galéré
