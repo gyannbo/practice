@@ -20,7 +20,7 @@ while [ true ]		# necessite le true pour que la boucle tourne, pas comme en c ou
 		fi
 		do 
 			cd ${dirs[$i]}
-			if [ $(git status | sed -n 4p) -eq "nothing to commit, working tree clean" ]
+			if [[ "$(git status | sed -n 4p)" = "nothing to commit, working tree clean"  &&  "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/master'." ]]
 			then
 				cd .. 
 				let " i += 1 "
