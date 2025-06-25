@@ -25,3 +25,5 @@ exit
 
 
 ## attention a la maison j'ai des fatal not a git repo
+
+## faire un script aussi pour pull quand j'arrive au début de la journée. 
