@@ -1,0 +1,3 @@
+sed 's/\(.*\)/\1/g' lol | awk 'NR==2{print $1}'   ## cat fonctionnais pas (prob PATH), sed fonctionnais
+
+## le contexte c'était ls > lol
