@@ -23,6 +23,7 @@ while [ true ]
 			echo " SUCCESS : $var "
 			let " i += 1 "
 		else
+			echo "$var HAS PULLED"
 			cd -  1> /dev/null
 			let " i += 1 "
 		fi
