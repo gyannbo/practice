@@ -17,7 +17,7 @@ while [ true ]
 			exit
 		fi
 		cd $var
-		if [[ "$(git pull 1>/dev/null)" = "Already up to date." ]]
+		if [[ "$(git pull)" = "Already up to date." ]]
 		then
 			cd - 1>/dev/null
 			echo " SUCCESS : $var "
@@ -34,4 +34,4 @@ exit
 ## lorsque je pull je dois m'identifier au proxy, je n'arrivais pas à faire accepter au prompt un input.
 ## La solution était de mettre un motdepasse dans l'identification au proxy, comme le proxy laisse tout
 ## passer on peut mettre du bullshit sur le mot de passe et on a pas le prompt :
-## user:bullshitpassword@proxydomain:port dans le git config (plutot avec git config --global http.proxy <proxystring>
+## user:bullshitpassword@proxydomain:port dans le git config (plutot avec git config --global http.proxy <proxystring> 
