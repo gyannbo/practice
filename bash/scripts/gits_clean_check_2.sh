@@ -3,15 +3,14 @@
 i=1
 var=0
 
-if [ "$(env | grep '^LANG')" = "LANG=fr_FR.UTF-8" ]			## j'avais un probleme parce que j'avais un commentaire sur la ligne préc, avec cette meme ligne commentée, pq ?
+if [ "$(env | grep '^LANG')" = "LANG=fr_FR.UTF-8" ]
 then
 	export LANG=en_US
 fi
 
 while [ true ]
 	do
-		# var=$(find ~ -name '.git' | sed 's/\/\.git//g' | sed -n "$i"p)
-		var=$(find ~ -name '.git' | sed 's/\/\.git//g' | awk "NR==$i{print \$1}")
+		var=$(find ~ -name '.git' | sed 's/\/\.git//g' | awk "NR==$i{print \$1}")   ## améliorer les perf içi, éviter de call find a chaque fois
 		if [ -z $var ]
 		then
 			exit
