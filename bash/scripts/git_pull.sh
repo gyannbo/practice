@@ -30,6 +30,12 @@ while [ true ]
 	done
 exit
 
+
+
+
+## TODO
+## pourquoi le scriptp git pull est beaucoup plus lent que le check clean ?
+
 ## LOGS
 ## lorsque je pull je dois m'identifier au proxy, je n'arrivais pas à faire accepter au prompt un input.
 ## La solution était de mettre un motdepasse dans l'identification au proxy, comme le proxy laisse tout
