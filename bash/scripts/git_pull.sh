@@ -17,7 +17,7 @@ while [ true ]
 			exit
 		fi
 		cd $var
-		if [[ "$(git pull)" = "Already up to date." ]]
+		if [[ "$(git pull 1>/dev/null)" = "Already up to date." ]]
 		then
 			cd - 1>/dev/null
 			echo " SUCCESS : $var "
