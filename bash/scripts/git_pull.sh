@@ -23,7 +23,6 @@ while [ true ]
 			echo " SUCCESS : $var "
 			let " i += 1 "
 		else
-			echo " FAIL : $var "
 			cd -  1> /dev/null
 			let " i += 1 "
 		fi
@@ -35,3 +34,6 @@ exit
 ## La solution était de mettre un motdepasse dans l'identification au proxy, comme le proxy laisse tout
 ## passer on peut mettre du bullshit sur le mot de passe et on a pas le prompt :
 ## user:bullshitpassword@proxydomain:port dans le git config (plutot avec git config --global http.proxy <proxystring> 
+
+## Lors du git pull, si il y a quelque chose a puller on aura de l'output sur le shell, meme si on redirige l'output du
+## git pull
