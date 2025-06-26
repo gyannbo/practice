@@ -34,7 +34,8 @@ exit
 
 
 ## TODO
-## pourquoi le scriptp git pull est beaucoup plus lent que le check clean ?
+## -pourquoi le scriptp git pull est beaucoup plus lent que le check clean ?
+## -faire ignorer les repos gits qui ne m'interresse pas, avec un fichier un peu comme gitignore
 
 ## LOGS
 ## lorsque je pull je dois m'identifier au proxy, je n'arrivais pas à faire accepter au prompt un input.
