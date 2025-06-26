@@ -11,7 +11,8 @@
 
 ## echo ${array[1]=$(cat lol |awk "NR==1")}  ## syntaxe mais output null prob car ordre des opérations n'est pas celui espéré
 ## 
-## array[1]=$(cat lol |awk "NR==1")
+## array[1]=$(cat lol |awk "NR==1")   ## OBSOLETE AWK DOESNT NEED A CAT
+## array[1]=$(awk "NR==1")   ## OBSOLETE AWK DOESNT NEED A CAT
 ## echo ${array[1]}				## içi output est bon
 
 
@@ -22,7 +23,7 @@ i=0
 while [ -n "${array[$i]}" ]				## why tf do i need the quotes here  : https://askubuntu.com/questions/1056950/bash-empty-string-comparison-behavior
 	do
 		let " i += 1 "
-		array[$i]=$(cat temp | awk "NR==$i")
+		array[$i]=$(awk "NR==$i" temp)
 	done
 
 i=1
