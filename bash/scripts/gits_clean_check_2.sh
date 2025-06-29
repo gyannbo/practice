@@ -100,15 +100,9 @@ exit
 
 
 
-## PROBLEM : IF HELP ISNT CLEAN BUT PRACTICE IS, THE PROGRAM TELLS THE REVERSE
-
-
-
-
-
-
 
 ## TODO
+## SCRIPTS LIST ALL SYSTEM GITS 
 ## Une maniere performante de le faire serait prob de faire 2 tableaux pour comparer, et mettre les résulats dans un troisième
 ## -faire ignorer les repos gits qui ne m'interresse pas, avec un fichier un peu comme gitignore
 ## -err check, if data/ignoregits exist, and so on
