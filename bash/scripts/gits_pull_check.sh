@@ -82,15 +82,13 @@ while [ true ]
 			continue
 		fi
 		cd ${sysgits[$i]}
-		if [[ "$(git status | sed -n 4p)" = "nothing to commit, working tree clean"  && \
-			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/master'."  ||\
-			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/main'." ]]  ## aussi pourquoi il faut tj des spaces, et des doubles [[ 
+		if [[ "$(git pull)" = "Already up to date." ]]
 		then
 			cd - 1>/dev/null
 			echo " SUCCESS : ${sysgits[$i]} "
 			let " i += 1 "
 		else
-			echo " FAIL : ${sysgits[$i]} "
+			echo "HAS PULLED : ${sysgits[$i]} "
 			cd -  1> /dev/null
 			let " i += 1 "
 		fi
