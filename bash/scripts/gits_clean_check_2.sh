@@ -79,24 +79,34 @@ while [ true ]
 		if [ ${sysgits[$i]} = "NULL" ]
 		then
 			let " i += 1 "
-			continue
+			continue 
 		fi
 		cd ${sysgits[$i]}
 		if [[ "$(git status | sed -n 4p)" = "nothing to commit, working tree clean"  && \
 			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/master'."  ||\
-			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/main'." ]]  ## aussi pourquoi il faut tj des spaces, et des doubles [[ 
+			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/main'." ]]  ## aussi pourquoi il faut tj des spaces, et des doubles [[   ## need both cases for program to be accurate
 		then
 			cd - 1>/dev/null
-			echo " SUCCESS : ${sysgits[$i]} "
+			echo " SUCCESS : ${sysgits[$i]} $i "
 			let " i += 1 "
 		else
-			echo " FAIL : ${sysgits[$i]} "
+			echo " FAIL : ${sysgits[$i]} $i "
 			cd -  1> /dev/null
 			let " i += 1 "
 		fi
 	done
 rm temp
 exit
+
+
+
+## PROBLEM : IF HELP ISNT CLEAN BUT PRACTICE IS, THE PROGRAM TELLS THE REVERSE
+
+
+
+
+
+
 
 ## TODO
 ## Une maniere performante de le faire serait prob de faire 2 tableaux pour comparer, et mettre les résulats dans un troisième
