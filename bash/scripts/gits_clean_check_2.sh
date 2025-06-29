@@ -40,7 +40,7 @@ while [ -n "${sysgits[$i]}" ]				## why tf do i need the quotes here  : https://
 
 
 #  create third tab            #
-
+# BE CAREFUL THE ARRAYS HAVE ACTUAL DATA FROM INDEX 1 #
 
 result[0]="begin"
 x=1
