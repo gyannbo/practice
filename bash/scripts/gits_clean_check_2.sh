@@ -60,15 +60,6 @@ while [[ -n "${sysgits[$i]}" ]]
 	done
 
 i=1
-# while [[ -n "${sysgits[$i]}" ]]
-#	do
-#		echo ${sysgits[$i]}
-#		let " i += 1 "
-#	done
-#
-#
-
-i=1
 while [ true ]
 	do
 		if [ -z ${sysgits[$i]} ]
@@ -82,9 +73,10 @@ while [ true ]
 			continue 
 		fi
 		cd ${sysgits[$i]}
-		if [[ "$(git status | sed -n 4p)" = "nothing to commit, working tree clean"  && \
-			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/master'."  ||\
-			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/main'." ]]  ## aussi pourquoi il faut tj des spaces, et des doubles [[   ## need both cases for program to be accurate
+#		if [[ "$(git status | sed -n 4p)" = "nothing to commit, working tree clean"  && \
+#			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/master'."  ||\
+#			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/main'." ]]  ## aussi pourquoi il faut tj des spaces, et des doubles [[   ## need both cases for program to be accurate
+		if [[ "$(git status | sed -n 4p)" = "nothing to commit, working tree clean" ]]
 		then
 			cd - 1>/dev/null
 			echo " SUCCESS : ${sysgits[$i]} $i "
