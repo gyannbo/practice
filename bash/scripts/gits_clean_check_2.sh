@@ -38,12 +38,12 @@ while [ -n "${sysgits[$i]}" ]				## why tf do i need the quotes here  : https://
 		sysgits[$i]=$(awk "NR==$i" temp)
 	done
 
-
 # replace gits to ignore in sysgits by NULL #
 
 i=1
 y=1
-
+rm temp
+	
 while [[ -n "${sysgits[$i]}" ]]
 	do
 		while [[ -n "${ignoregits[$y]}" ]]
@@ -64,7 +64,6 @@ while [ true ]
 	do
 		if [ -z ${sysgits[$i]} ]
 		then
-			rm temp
 			exit
 		fi
 		if [ ${sysgits[$i]} = "NULL" ]
@@ -73,9 +72,7 @@ while [ true ]
 			continue 
 		fi
 		cd ${sysgits[$i]}
-		if [[ "$(git status | sed -n 4p)" = "nothing to commit, working tree clean"  && \
-			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/master'."  ||\
-			 "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/main'." ]]  ## aussi pourquoi il faut tj des spaces, et des doubles [[   ## need both cases for program to be accurate
+		if [[ "$(git status | sed -n 4p)" = "nothing to commit, working tree clean" ]]
 		then
 			cd - 1>/dev/null
 			echo " SUCCESS : ${sysgits[$i]} $i "
@@ -86,7 +83,6 @@ while [ true ]
 			let " i += 1 "
 		fi
 	done
-rm temp
 exit
 
 
@@ -107,5 +103,11 @@ exit
 
 ## LOG :
 ## if origin/main instead of origin/master, failed the tests
-## system can be in another language and can fail the tests
 ## some repo have a .git but fail a git status. Doesnt matter, will put them in the ignoregits.
+## system can be in another language and can fail the tests
+## BUG: lorsqu'on créer un fichier, il se créer dans l'environnement d'ou on lance le script, donc j'étais dans les repos git que
+## je testais, il créait le fichier temp et donc quand il faisait un git status le repo n'était pas clean. Maintenant je supprime
+## temp avant de faire les git status donc pas de problème je peux lançer les scripts de n'importe où.
+
+
+ ## aussi pourquoi il faut tj des spaces, et des doubles [[   ## need both cases for program to be accurate
