@@ -1,49 +1,35 @@
 #!/bin/bash
-
                                 
 #  is LANG right ?             #
-                                
-
 if [ "$(env | grep '^LANG')" = "LANG=fr_FR.UTF-8" ]    ## change to match what is not en-US
 then
 	export LANG=en_US
 fi
-                                
 
 #  remplir ignoregits tab      #
-                                
-
 ignoregits[0]="begin"
 i=0
-
-while [ -n "${ignoregits[$i]}" ]				## why tf do i need the quotes here  : https://askubuntu.com/questions/1056950/bash-empty-string-comparison-behavior
+while [ -n "${ignoregits[$i]}" ]				## why do i need the quotes here  : https://askubuntu.com/questions/1056950/bash-empty-string-comparison-behavior
 	do
 		let " i += 1 "
 		ignoregits[$i]=$(awk "NR==$i" /home/gbonis/scripts/data/ignoregits )
 	done
-
                                 
-#  remplir on system git tab   #
-                                
-
+#  remplir on system gits tab   #
 sysgits[0]="begin"
 i=0
-
 find ~ -name '.git' > temp
 sed -i 's/\/\.git//g' temp
-
-while [ -n "${sysgits[$i]}" ]				## why tf do i need the quotes here  : https://askubuntu.com/questions/1056950/bash-empty-string-comparison-behavior
+while [ -n "${sysgits[$i]}" ]				## why do i need the quotes here  : https://askubuntu.com/questions/1056950/bash-empty-string-comparison-behavior
 	do
 		let " i += 1 "
 		sysgits[$i]=$(awk "NR==$i" temp)
 	done
 
 # replace gits to ignore in sysgits by NULL #
-
 i=1
 y=1
 rm temp
-	
 while [[ -n "${sysgits[$i]}" ]]
 	do
 		while [[ -n "${ignoregits[$y]}" ]]
@@ -92,16 +78,8 @@ exit
 
 ## TODO
 ## SCRIPTS LIST ALL SYSTEM GITS 
-## Une maniere performante de le faire serait prob de faire 2 tableaux pour comparer, et mettre les résulats dans un troisième
-## -faire ignorer les repos gits qui ne m'interresse pas, avec un fichier un peu comme gitignore
 ## -err check, if data/ignoregits exist, and so on
-## -language test if diff plutot que if eq to francais
-
 ## faire un script aussi pour pull quand j'arrive au début de la journée. Voir meme un script qui prends les deux possibilitées.
-
-
-
-
 
 ## LOG :
 ## if origin/main instead of origin/master, failed the tests
@@ -110,6 +88,4 @@ exit
 ## BUG: lorsqu'on créer un fichier, il se créer dans l'environnement d'ou on lance le script, donc j'étais dans les repos git que
 ## je testais, il créait le fichier temp et donc quand il faisait un git status le repo n'était pas clean. Maintenant je supprime
 ## temp avant de faire les git status donc pas de problème je peux lançer les scripts de n'importe où.
-
-
  ## aussi pourquoi il faut tj des spaces, et des doubles [[   ## need both cases for program to be accurate
