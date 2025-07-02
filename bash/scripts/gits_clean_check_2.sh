@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# This script tests at the end of a workday if all the git repos of a machine have commited and pushed.
+# It uses a file in a directory named 'data' to get all git repo to ignore (repo used to build
+# softwares like ghidra, neovim and all other gits one can have but does nothing with).
                                 
 #  is LANG right ?             #
 if [ "$(env | grep '^LANG')" = "LANG=fr_FR.UTF-8" ]    ## change to match what is not en-US
@@ -15,7 +19,7 @@ while [ -n "${ignoregits[$i]}" ]				## why do i need the quotes here  : https://
 		ignoregits[$i]=$(awk "NR==$i" /home/gbonis/scripts/data/ignoregits )
 	done
                                 
-#  remplir on system gits tab   #
+#  fill on system gits tab   #
 sysgits[0]="begin"
 i=0
 find ~ -name '.git' > temp
@@ -45,6 +49,7 @@ while [[ -n "${sysgits[$i]}" ]]
 		y=0	
 	done
 
+# main loop
 i=1
 while [ true ]
 	do
@@ -63,17 +68,15 @@ while [ true ]
             "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/main'." ]]  ## aussi pourquoi il faut tj des spaces, et des doubles [[   ## need both cases for program to be accurate
 		then
 			cd - 1>/dev/null
-			echo " SUCCESS : ${sysgits[$i]} $i "
+			echo " SUCCESS : ${sysgits[$i]} "
 			let " i += 1 "
 		else
-			echo " FAIL : ${sysgits[$i]} $i "
+			echo " FAIL : ${sysgits[$i]} "
 			cd -  1> /dev/null
 			let " i += 1 "
 		fi
 	done
 exit
-
-
 
 
 ## TODO
