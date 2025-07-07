@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# THIS IS THE PULL VERSION OF THE CLEAN SCRIPT
+ 
 # This script tests at the end of a workday if all the git repos of a machine have commited and pushed.
 # It uses a file in a directory named 'data' to get all git repo to ignore (repo used to build
 # softwares like ghidra, neovim and all other gits one can have but does nothing with).
