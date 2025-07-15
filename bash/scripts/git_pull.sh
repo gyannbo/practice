@@ -7,7 +7,7 @@
 # softwares like ghidra, neovim and all other gits one can have but does nothing with).
                                 
 #  is LANG right ?             #
-if [ "$(env | grep '^LANG')" = "LANG=fr_FR.UTF-8" ]    ## change to match what is not en-US
+if [ "$(env | grep '^LANG')" != "LANG=en_US" ]    ## change to match what is not en-US
 then
 	export LANG=en_US
 fi
