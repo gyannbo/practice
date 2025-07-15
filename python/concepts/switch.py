@@ -9,8 +9,12 @@ match x:
 	case _ if x < 0:
 		print("negative number")
 
-##match [ x >= 0, x < 0]:
-##	case [true, false]:
+##match [x >= 0, x < 0]:
+##	case [True, False]:				## careful, must be True, not true
 ##		print("positive number")
-##	case [false, true]:
+##	case [False, True]:
 ##		print("negative number")
+
+
+
+## do aa try catch with input is letter 
