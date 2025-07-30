@@ -41,7 +41,7 @@ def where_is(point, point2):
 		case _:
 			print("fail")
 
-## Ne fonctionne pas car case (1, 2) attend un tuple, SomePoint( etc.. est requis içi
+## Ne fonctionne pas car case (1, 2) attend un tuple, SomePoint(x = 3 etc.. est requis içi
 ##	match point:
 ##		case (3, 3):
 ##			print("Success")
@@ -55,3 +55,24 @@ def where_is(point, point2):
 
 where_is(point, point2)
 
+
+
+match point:
+	case SomePoint(x = x, y = y) if x == y:  # pourquoi içi ça fonctionne avec x = x et pas avec juste x (il fallait __match_args__)
+		print(f"Success: x ({x}) = y ({y})")
+	case SomePoint(x, y):
+		print(f"Fail: x ({x}) = y ({y})")
+
+class SomePointBetter:
+	__match_args__=('x', 'y')
+	def __init__(self, x, y):
+		self.x = x
+		self.y = y
+
+betterpoint = SomePointBetter(12, 14)
+
+match betterpoint:
+	case SomePointBetter(x, y) if x == y:
+		print(f"SuccesBetter: x ({x}) = y ({y})")
+	case SomePointBetter(x, y):
+		print(f"FailBetter: x ({x}) = y ({y})")
