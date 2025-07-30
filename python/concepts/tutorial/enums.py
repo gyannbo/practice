@@ -18,4 +18,7 @@ print(type(color))
 print(color)
 print(color.name)
 print(color.value)
-## check what from enum import Enum does
+
+# stop prompting AI and read the docs instead. Enum classes dont behave like normla classes. The color variable is an object
+# from the Enum class, it is not only what is given with input(), it has also a name etc... why print(color) return Color.RED
+# is just the behaviour of the class, to get this need to have a deeper understanding of classes and python.
