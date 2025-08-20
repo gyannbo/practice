@@ -5,7 +5,7 @@ if s == '':
 
 try:
     x = int(s)
-except:
+except ValueError:          ## avant pass de ValueError içi, juste except, probablement que le except matchais n'importe quelle expression
     print("something whent wrong with user input")
     exit()
 
