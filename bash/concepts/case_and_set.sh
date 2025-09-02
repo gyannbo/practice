@@ -11,9 +11,11 @@ var2=$2
 echo -n "Veuillez rentrer votre age: "
 read age fin
 
-case $age in
-	(*[0-9]*) ;;
-	(*)	echo "not a number" ; exit;  ;;
+##	pour un case statement, on utilise le | pour chainer les cas, et seulement ) pour fermer (pas besoin d'ouvrir la parenthèse.
+##	ensuite après le cas, on peut mettre les commandes après. Chaque clause va être terminée par ;; ou ;& u ;;&
+case $age in	# check if age is not a number
+	*[0-9]*) ;;
+	*)	echo "not a number" ; exit;  ;;
 esac
 	
 echo "Bonjour ${var1} ${var2}, tu as ${age} ans"
