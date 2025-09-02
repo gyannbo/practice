@@ -15,10 +15,10 @@ case ${choix,,} in
 		if [[ ${matos,,} == "cpu" ]]
 			then
 				lscpu	
-			elif [[ ${matos,,} == "pci" ]]
+		elif [[ ${matos,,} == "pci" ]]
 			then
 				lspci	
-			fi
+		fi
 	;;
 
 	espace|e|E)
@@ -28,8 +28,8 @@ case ${choix,,} in
 				df -h	
 		elif [[ ${info,,} == "inode" ]]
 			then
-				df -i	
-			fi
+				df -i
+		fi
 	;;
 
 	paquet|p|P)
