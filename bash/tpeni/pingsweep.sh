@@ -7,7 +7,7 @@
 
 
 
-##   faire une maniere de checker le masque pour arreter le sweep
+##   faire le calcul de mask avec des bitwise operator pour arreter le programme
 
 
 
