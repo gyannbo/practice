@@ -3,7 +3,7 @@
 vert='\033[5;32m'
 rouge='\033[3;31m'
 nc='\033[0m'
-user=$1
+#export user=$1
 
 if [[ -z $user ]]
 	then
