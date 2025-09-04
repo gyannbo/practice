@@ -9,8 +9,12 @@
 
 ##   faire le calcul de mask avec des bitwise operator pour arreter le programme
 
-
-
+# bug si masque comporte un chiffre
+# bug si octet plus que 255
+# faire en sort que si pas de masque dans l'adresse du prompt, le prompter
+## possibilité de faire $(( $var + $var2 ))
+## command cut ?
+## tous les trucs avec les ip sont faisable avec cut -b je pense
 
 
 
@@ -23,7 +27,8 @@ then
 fi
 
 ## rajouter calcul de masque et sanitize user input
-if [[ -n $(echo $address | sed -r 's/([0-9\.]*)//') ]]
+##if [[ -n $(echo $address | sed -r 's/([0-9\.]*)//') ]]
+if [[ -n $(echo $address | sed -r 's/[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\/[0-9]{2}//') ]]
 then
 	echo "address typed is invalid"
 	exit
@@ -35,6 +40,16 @@ byte3=$(echo $address | sed -r 's/[0-9]*\.[0-9]*\.([0-9]*)\.[0-9]*/\1/')
 byte4=$(echo $address | sed -r 's/[0-9]*\.[0-9]*\.[0-9]*\.([0-9]*)/\1/')
 array=([0]=$byte1 [1]=$byte2 [2]=$byte3 [3]=$byte4)
 #echo ${array[*]}  Print all array members
+
+
+## gestion du mask, gérer si bien /n et aussi si n < 33
+
+mask=$(echo $address | sed -r 's/[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\/([0-9]{2})/\1/')
+if [[ $mask == * ]]
+then
+	echo $mask
+	exit
+fi
 
 i=0
 while [[ $i -ne 4 ]]
