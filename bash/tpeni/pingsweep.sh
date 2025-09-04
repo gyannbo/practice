@@ -5,7 +5,7 @@
 
 
 
-
+## RESTE SEULEMENT LA GESTION DU MASQUE SI PAS VALIDE MAIS DEUX CHIFFRe QUAND mEME
 
 ##   faire le calcul de mask avec des bitwise operator pour arreter le programme
 
@@ -34,13 +34,12 @@ then
 	exit
 fi
 
-byte1=$(echo $address | sed -r 's/([0-9]*)\.[0-9]*\.[0-9]*\.[0-9]*/\1/')
-byte2=$(echo $address | sed -r 's/[0-9]*\.([0-9]*)\.[0-9]*\.[0-9]*/\1/')
-byte3=$(echo $address | sed -r 's/[0-9]*\.[0-9]*\.([0-9]*)\.[0-9]*/\1/')
-byte4=$(echo $address | sed -r 's/[0-9]*\.[0-9]*\.[0-9]*\.([0-9]*)/\1/')
+byte1=$(echo $address | sed -r 's/([0-9]*)\.[0-9]*\.[0-9]*\.[0-9]*\/[0-9]{2}/\1/')
+byte2=$(echo $address | sed -r 's/[0-9]*\.([0-9]*)\.[0-9]*\.[0-9]*\/[0-9]{2}/\1/')
+byte3=$(echo $address | sed -r 's/[0-9]*\.[0-9]*\.([0-9]*)\.[0-9]*\/[0-9]{2}/\1/')
+byte4=$(echo $address | sed -r 's/[0-9]*\.[0-9]*\.[0-9]*\.([0-9]*)\/[0-9]{2}/\1/')
 array=([0]=$byte1 [1]=$byte2 [2]=$byte3 [3]=$byte4)
 #echo ${array[*]}  Print all array members
-
 
 ## gestion du mask, gérer si bien /n et aussi si n < 33
 
@@ -48,7 +47,7 @@ mask=$(echo $address | sed -r 's/[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\/([0-9]{2})/\1/'
 if [[ $mask == * ]]
 then
 	echo $mask
-	exit
+	#exit
 fi
 
 i=0
@@ -61,8 +60,7 @@ do
 	fi
 	(( i++ ))
 done
-
-## pouvoir kill le script avec ctrl-c
+# pouvoir kill le script avec ctrl-c
 
 trap exit SIGINT
 
