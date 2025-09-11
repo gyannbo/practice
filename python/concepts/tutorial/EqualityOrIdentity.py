@@ -3,7 +3,7 @@ b = 10
 c = 30
 
 print('by equality')
-print(a == b)  ## comparison by equality (vallue of the object)
+print(a == b)  ## comparison by equality (value of the object)
 print(a == c)
 print()
 
