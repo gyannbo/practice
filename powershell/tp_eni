@@ -14,4 +14,22 @@ get-childitem -path c:\windows -file | select name,@{n='taille'; e={$PSItem.leng
 
 # dans cet exemple, n et e veulent dire name et expression, on ne peut pas changer ces identifiants, ils sont utilisés par le système
 # pour faire des hashtables
-# Oui, 
+# Oui, on peut voir ça dans le man about_calculated_properties
+
+
+
+
+-----------------------------
+MEASURE-OBJECT
+
+
+get-childitem -Path <path> -recurse | measure-object -property length -average
+get-childitem -Path <path> -recurse | measure-object -property length -minimum
+get-childitem -Path <path> -recurse | measure-object -property length -maximum
+get-childitem -Path <path> -recurse | where-object { $PSItem.length -gt 10mb -and $PSItem.length -lt 100mb }
+
+
+-----
+
+
+get-adgroup -filter * -properties * | format-table -property name,created,description -groupby groupscope -wrap
