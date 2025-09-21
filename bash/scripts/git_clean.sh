@@ -13,7 +13,7 @@ fi
 #  fill ignoregits tab      #
 ignoregits[0]="begin"
 i=0
-while [ -n "${ignoregits[$i]}" ]				
+while [ -n "${ignoregits[$i]}" ]	## redo this with a for loop, without awk : for var in $(cat ~/scripts/data/ignoregits)
 	do
 		let " i += 1 "
 		ignoregits[$i]=$(awk "NR==$i" /home/gbonis/scripts/data/ignoregits )
@@ -24,7 +24,7 @@ sysgits[0]="begin"
 i=0
 find ~ -name '.git' > temp
 sed -i 's/\/\.git//g' temp
-while [ -n "${sysgits[$i]}" ]				
+while [ -n "${sysgits[$i]}" ]			## redo this with a for loop, without awk : for var in $(find ~ -name '.git)
 	do
 		let " i += 1 "
 		sysgits[$i]=$(awk "NR==$i" temp)
