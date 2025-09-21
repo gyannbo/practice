@@ -10,7 +10,7 @@ then
 	export LANG=en_US
 fi
 
-#  remplir ignoregits tab      #
+#  fill ignoregits tab      #
 ignoregits[0]="begin"
 i=0
 while [ -n "${ignoregits[$i]}" ]				
@@ -19,7 +19,7 @@ while [ -n "${ignoregits[$i]}" ]
 		ignoregits[$i]=$(awk "NR==$i" /home/gbonis/scripts/data/ignoregits )
 	done
                                 
-#  fill on system gits tab   #
+#  fill system gits tab   #
 sysgits[0]="begin"
 i=0
 find ~ -name '.git' > temp
@@ -67,12 +67,10 @@ while [ true ]
            { [[ "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/master'."  ||\
             "$(git status | sed -n 2p)" = "Your branch is up to date with 'origin/main'." ]] }
 		then
-			cd - 1>/dev/null
 			echo " SUCCESS : ${sysgits[$i]} "
 			let " i += 1 "
 		else
 			echo " FAIL : ${sysgits[$i]} "
-			cd -  1> /dev/null
 			let " i += 1 "
 		fi
 	done
