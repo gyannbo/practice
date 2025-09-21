@@ -1,0 +1,78 @@
+
+
+
+# Had to put some of the commands in the function because colors weren't persistent
+# Probably there are useless lines in this file, I didnt fully test this
+
+$host.privatedata.errorbackgroundcolor="Magenta"
+$host.privatedata.ErrorForegroundColor="cyan"     
+$host.privatedata.ErrorBackgroundColor="Magenta"     
+$host.privatedata.WarningForegroundColor="cyan"   
+$host.privatedata.WarningBackgroundColor= "Magenta"  
+$host.privatedata.DebugForegroundColor="cyan"     
+$host.privatedata.DebugBackgroundColor="Magenta"     
+$host.privatedata.VerboseForegroundColor="cyan"   
+$host.privatedata.VerboseBackgroundColor="Magenta" 
+$host.privatedata.ProgressForegroundColor="cyan"
+$host.privatedata.ProgressBackgroundColor="Magenta"
+
+
+# To have the following lines do what I wanted, I check the output of psreadlineoptions and
+# copied the principles behind what I sa, and with the help of the ANSSI escape code for colors
+# everything worked.
+# still don't know why I needed to put most of the things in a function
+
+
+Set-PSReadLineOption -colors @{ Command = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Number = "$([char]0x1b)[96;3m"}
+Set-PSReadLineOption -colors @{ Member = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Operator = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Type = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Variable = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ string = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Parameter = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ continuationprompt = "$([char]0x1b)[96;3m"} 
+
+Set-PSReadLineOption -colors @{ default = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ error = "$([char]0x1b)[96;3m"}
+
+  $Host.UI.RawUI.BackgroundColor = "Magenta"
+    $Host.UI.RawUI.ForegroundColor = "cyan"
+
+function col () {
+
+
+    $Host.UI.RawUI.BackgroundColor = "magenta"
+    $Host.UI.RawUI.ForegroundColor = "cyan"
+
+ Set-PSReadLineOption -colors @{ Command = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ continuationprompt = "$([char]0x1b)[96;3m"}
+Set-PSReadLineOption -colors @{ default = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Command = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Number = "$([char]0x1b)[96;3m"}
+Set-PSReadLineOption -colors @{ Member = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Operator = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Type = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Variable = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ Parameter = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ continuationprompt = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ string = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ defaulttoken = "$([char]0x1b)[96;3m"}
+Set-PSReadLineOption -colors @{ default = "$([char]0x1b)[96;3m"} 
+Set-PSReadLineOption -colors @{ error = "$([char]0x1b)[96;3m"}
+ clear-host 
+
+}
+col
+
+
+#color prompt, help : https://jafrog.com/2013/11/23/colors-in-terminal.html
+# it was tricky to get the right color code here. The previous URL talks about the ANSII ESCAPE CODES, to set a color.
+# previously the same code as 96 wasnt recognize as background, this site explained it well
+
+function prompt  
+{  
+    $ESC = [char]27
+    "$ESC[96mPS $($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1)) $ESC[3m"  
+}
+

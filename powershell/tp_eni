@@ -1,0 +1,35 @@
+import-csv \\CD01\partage\exports\jambon -delimiter "," | select-object *, @{n='allo' ; e={$_.givenname} }   -ExcludeProperty givenname
+
+
+
+get-childitem -file \\CD01\partage -recurse | select length, @{ n='taille'; e={ '{0:N4}' -f ( $PSItem.length / 1GB ) } } -excludeproperty length
+
+
+
+-----------------------------
+PROPRIÉTÉS CALCULÉS
+
+
+get-childitem -path c:\windows -file | select name,@{n='taille'; e={$PSItem.length}}
+
+# dans cet exemple, n et e veulent dire name et expression, on ne peut pas changer ces identifiants, ils sont utilisés par le système
+# pour faire des hashtables
+# Oui, on peut voir ça dans le man about_calculated_properties
+
+
+
+
+-----------------------------
+MEASURE-OBJECT
+
+
+get-childitem -Path <path> -recurse | measure-object -property length -average
+get-childitem -Path <path> -recurse | measure-object -property length -minimum
+get-childitem -Path <path> -recurse | measure-object -property length -maximum
+get-childitem -Path <path> -recurse | where-object { $PSItem.length -gt 10mb -and $PSItem.length -lt 100mb }
+
+
+-----
+
+
+get-adgroup -filter * -properties * | format-table -property name,created,description -groupby groupscope -wrap
